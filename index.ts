@@ -33,3 +33,30 @@ class Student{
         console.log(this)
     }
 }
+
+class Student_manager{
+    student: Student[]
+
+    constructor() {
+        this.student = []
+    }
+
+    add_student(name: string) {
+        
+        let student = new Student(name)
+        this.student.push(student)
+        console.log(`Student: ${name} added successfully. Student ID: ${student.id}`)
+    }
+
+    enroll_student(student_id: number, course: string) {
+        let student = this.student.find(std => std.id === student_id)
+        if(student) {
+            student.enroll_course(course)
+            console.log(`${student.name} enrolled in ${course} successfully`)
+        }
+    }
+
+    view_student_balance() {
+        
+    }
+}
