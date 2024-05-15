@@ -4,10 +4,10 @@ import inquirer from "inquirer"
 
 class Student{
     static counter = 10000
-    id: number,
-    name: string,
-    courses: string[],
-    balance: number,
+    id: number
+    name: string
+    courses: string[]
+    balance: number
 
     constructor(name: string) {
         this.id = Student.counter++
@@ -120,6 +120,7 @@ async function main() {
                 ])
                 studentManager.add_student(nameInput.name)
                 break
+
             case "Enroll Student":
                 let courseInput = await inquirer.prompt([
                     {
@@ -135,6 +136,51 @@ async function main() {
                 ])
                 studentManager.enroll_student(courseInput.studentId, courseInput.course)
                 break
+            
+            case "View Student Balance": 
+                let balanceInput = await inquirer.prompt([
+                    {
+                        name: "studentId",
+                        type: "number",
+                        message: "Enter Student ID."
+                    }
+                ])
+                studentManager.view_student_balance(balanceInput.studentId)
+                break
+            
+            case "Pay Fees":
+                let feesInput = await inquirer.prompt([
+                    {
+                        name: "StudentId",
+                        type: "number",
+                        message: "Enter Student ID" 
+                    },
+                    {
+                        name: "amount",
+                        type: "number",
+                        message: "Enter The Amount to Pay"
+                    }
+                ])
+                studentManager.payStudentFee(feesInput.StudentId, feesInput.amount)
+                break
+            
+            case "Show Status":
+                let showStatus = await inquirer.prompt([
+                    {
+                        name: "studentId",
+                        type: "number",
+                        message: "Enter Student ID"
+                    }
+                ])
+                studentManager.showStudentStatus(showStatus.studentId)
+                break
+
+            case "Exit":
+                console.log("Exiting")
+                process.exit()
+
         }
     }
 }
+
+main()
