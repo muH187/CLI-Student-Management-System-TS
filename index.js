@@ -21,9 +21,13 @@ class Student {
     pay_fees(amount) {
         this.balance -= amount;
         console.log(`$${amount} Fees paid successfully for ${this.name}`);
+        console.log(`Remaining Balance of ${this.name} is ${this.balance}`);
     }
     all_details() {
-        console.log(this);
+        console.log(`ID: ${this.id}`);
+        console.log(`Name: ${this.name}`);
+        console.log(`Courses: ${this.courses}`);
+        console.log(`Balance: ${this.balance}`);
     }
 }
 class Student_manager {
